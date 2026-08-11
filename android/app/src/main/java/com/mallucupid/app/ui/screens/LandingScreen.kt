@@ -1,5 +1,6 @@
 package com.mallucupid.app.ui.screens
 
+import android.util.Log
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
@@ -8,22 +9,13 @@ import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -39,6 +31,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.mallucupid.app.ui.theme.Rose300
 import com.mallucupid.app.ui.theme.Rose500
+
+private const val TAG = "LandingScreen"
 
 @Composable
 fun LandingScreen(onGetStarted: () -> Unit) {
@@ -71,7 +65,11 @@ fun LandingScreen(onGetStarted: () -> Unit) {
                 )
             )
     ) {
-        Canvas(modifier = Modifier.fillMaxSize()) {
+        Canvas(
+            modifier = Modifier
+                .fillMaxSize()
+                .clickable(enabled = false) { }
+        ) {
             drawLandingLights(this, animate1, animate2)
         }
 
@@ -79,7 +77,8 @@ fun LandingScreen(onGetStarted: () -> Unit) {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(horizontal = 24.dp, vertical = 28.dp),
-            verticalArrangement = Arrangement.SpaceBetween
+            verticalArrangement = Arrangement.SpaceBetween,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Column {
                 Text(
@@ -99,60 +98,63 @@ fun LandingScreen(onGetStarted: () -> Unit) {
                 )
             }
 
-            Surface(
+            Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(bottom = 12.dp),
-                shape = RoundedCornerShape(32.dp),
-                color = Color.White.copy(alpha = 0.08f),
-                tonalElevation = 8.dp,
-                shadowElevation = 12.dp
+                    .background(
+                        color = Color.White.copy(alpha = 0.08f),
+                        shape = RoundedCornerShape(32.dp)
+                    )
+                    .padding(24.dp)
             ) {
-                Column(modifier = Modifier.padding(24.dp)) {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Column(modifier = Modifier.weight(1f)) {
-                            Text(
-                                text = "Launch your creator journey",
-                                style = MaterialTheme.typography.headlineSmall,
-                                fontWeight = FontWeight.Bold,
-                                color = Color.White
-                            )
-                            Spacer(modifier = Modifier.height(8.dp))
-                            Text(
-                                text = "Join a modern creator marketplace built for premium fans and paid unlocks.",
-                                fontSize = 14.sp,
-                                color = Color(0xFF94A3B8),
-                                lineHeight = 20.sp
-                            )
-                        }
-                        Spacer(modifier = Modifier.width(12.dp))
-                        Box(
-                            modifier = Modifier
-                                .width(72.dp)
-                                .height(72.dp)
-                                .background(
-                                    brush = Brush.radialGradient(
-                                        colors = listOf(Rose500.copy(alpha = 0.8f), Rose300.copy(alpha = 0.35f))
-                                    ),
-                                    shape = CircleShape
-                                )
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text(
+                            text = "Launch your creator journey",
+                            style = MaterialTheme.typography.headlineSmall,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.White
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = "Join a modern creator marketplace built for premium fans and paid unlocks.",
+                            fontSize = 14.sp,
+                            color = Color(0xFF94A3B8),
+                            lineHeight = 20.sp
                         )
                     }
+                    Spacer(modifier = Modifier.width(12.dp))
+                    Box(
+                        modifier = Modifier
+                            .width(72.dp)
+                            .height(72.dp)
+                            .background(
+                                brush = Brush.radialGradient(
+                                    colors = listOf(Rose500.copy(alpha = 0.8f), Rose300.copy(alpha = 0.35f))
+                                ),
+                                shape = CircleShape
+                            )
+                    )
+                }
 
-                    Spacer(modifier = Modifier.height(24.dp))
+                Spacer(modifier = Modifier.height(24.dp))
 
-                    Button(
-                        onClick = onGetStarted,
-                        modifier = Modifier.fillMaxWidth(),
-                        colors = ButtonDefaults.buttonColors(containerColor = Rose500),
-                        shape = RoundedCornerShape(20.dp)
-                    ) {
-                        Text(text = "Get Started", fontSize = 16.sp)
-                    }
+                Button(
+                    onClick = {
+                        Log.d(TAG, "Get Started button clicked!")
+                        onGetStarted()
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(52.dp),
+                    colors = ButtonDefaults.buttonColors(containerColor = Rose500),
+                    shape = RoundedCornerShape(20.dp)
+                ) {
+                    Text(text = "Get Started", fontSize = 16.sp)
                 }
             }
         }
