@@ -12,22 +12,10 @@ class AuthRepository @Inject constructor(
     private val api: MalluCupidApi
 ) {
 
+    // Creator Auth
     fun login(email: String, password: String): Flow<Result<AuthResponse>> = flow {
         try {
             val response = api.login(mapOf("email" to email, "password" to password))
-            if (response.error != null) {
-                emit(Result.failure(Exception(response.error)))
-            } else {
-                emit(Result.success(response))
-            }
-        } catch (e: Exception) {
-            emit(Result.failure(e))
-        }
-    }
-
-    fun userLogin(email: String, password: String): Flow<Result<AuthResponse>> = flow {
-        try {
-            val response = api.userLogin(mapOf("email" to email, "password" to password))
             if (response.error != null) {
                 emit(Result.failure(Exception(response.error)))
             } else {
@@ -70,6 +58,102 @@ class AuthRepository @Inject constructor(
         }
     }
 
+    // User (Fan) Auth
+    fun userLogin(email: String, password: String): Flow<Result<AuthResponse>> = flow {
+        try {
+            val response = api.userLogin(mapOf("email" to email, "password" to password))
+            if (response.error != null) {
+                emit(Result.failure(Exception(response.error)))
+            } else {
+                emit(Result.success(response))
+            }
+        } catch (e: Exception) {
+            emit(Result.failure(e))
+        }
+    }
+
+    fun userSignup(
+        email: String,
+        name: String,
+        password: String,
+        redirectSlug: String
+    ): Flow<Result<AuthResponse>> = flow {
+        try {
+            val response = api.userSignup(
+                mapOf(
+                    "email" to email,
+                    "name" to name,
+                    "password" to password,
+                    "redirect_slug" to redirectSlug
+                )
+            )
+            if (response.error != null) {
+                emit(Result.failure(Exception(response.error)))
+            } else {
+                emit(Result.success(response))
+            }
+        } catch (e: Exception) {
+            emit(Result.failure(e))
+        }
+    }
+
+    fun userVerifyOtp(email: String, token: String): Flow<Result<AuthResponse>> = flow {
+        try {
+            val response = api.userVerifyOtp(mapOf("email" to email, "token" to token))
+            if (response.error != null) {
+                emit(Result.failure(Exception(response.error)))
+            } else {
+                emit(Result.success(response))
+            }
+        } catch (e: Exception) {
+            emit(Result.failure(e))
+        }
+    }
+
+    fun userResendOtp(email: String): Flow<Result<AuthResponse>> = flow {
+        try {
+            val response = api.userResendOtp(mapOf("email" to email))
+            if (response.error != null) {
+                emit(Result.failure(Exception(response.error)))
+            } else {
+                emit(Result.success(response))
+            }
+        } catch (e: Exception) {
+            emit(Result.failure(e))
+        }
+    }
+
+    fun userForgotPassword(email: String, redirectSlug: String): Flow<Result<AuthResponse>> = flow {
+        try {
+            val response = api.userForgotPassword(
+                mapOf("email" to email, "redirect_slug" to redirectSlug)
+            )
+            if (response.error != null) {
+                emit(Result.failure(Exception(response.error)))
+            } else {
+                emit(Result.success(response))
+            }
+        } catch (e: Exception) {
+            emit(Result.failure(e))
+        }
+    }
+
+    fun userResetPassword(email: String, token: String, password: String): Flow<Result<AuthResponse>> = flow {
+        try {
+            val response = api.userResetPassword(
+                mapOf("email" to email, "token" to token, "password" to password)
+            )
+            if (response.error != null) {
+                emit(Result.failure(Exception(response.error)))
+            } else {
+                emit(Result.success(response))
+            }
+        } catch (e: Exception) {
+            emit(Result.failure(e))
+        }
+    }
+
+    // Session
     fun getSession(): Flow<Result<AuthResponse>> = flow {
         try {
             val response = api.getSession()

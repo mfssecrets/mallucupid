@@ -1,10 +1,26 @@
+import java.util.Properties
+import java.io.FileInputStream
+
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
     alias(libs.plugins.kotlin.serialization)
 }
+
+val localProperties = Properties().apply {
+    val localFile = rootProject.file("local.properties")
+    if (localFile.exists()) {
+        load(FileInputStream(localFile))
+    }
+}
+
+val supabaseAuthUrl = localProperties.getProperty("supabase.auth.url") ?: "https://rytulzgsuzgicmpvrrxn.supabase.co/functions/v1/auth"
+val supabaseUrl = localProperties.getProperty("supabase.url") ?: "https://rytulzgsuzgicmpvrrxn.supabase.co"
+val supabaseAnonKey = localProperties.getProperty("supabase.anon.key") ?: ""
+val resendApiKey = localProperties.getProperty("resend.api.key") ?: ""
 
 android {
     namespace = "com.mallucupid.app"
@@ -14,13 +30,21 @@ android {
         applicationId = "com.mallucupid.app"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "1.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "SUPABASE_AUTH_URL", "\"${supabaseAuthUrl}\"")
+        buildConfigField("String", "SUPABASE_URL", "\"${supabaseUrl}\"")
+        buildConfigField("String", "SUPABASE_ANON_KEY", "\"${supabaseAnonKey}\"")
+        buildConfigField("String", "RESEND_API_KEY", "\"${resendApiKey}\"")
     }
 
     buildTypes {
+        debug {
+            isMinifyEnabled = false
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
@@ -33,8 +57,12 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+    kotlinOptions {
+        jvmTarget = "11"
+    }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 

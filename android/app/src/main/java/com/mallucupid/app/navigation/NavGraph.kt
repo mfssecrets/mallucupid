@@ -1,5 +1,6 @@
 package com.mallucupid.app.navigation
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -7,6 +8,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.mallucupid.app.ui.screens.*
+
+private const val TAG = "MalluCupidNav"
 
 sealed class Screen(val route: String) {
     object Landing : Screen("landing")
@@ -34,7 +37,10 @@ fun MalluCupidNavGraph(
         composable(Screen.Landing.route) {
             LandingScreen(
                 onGetStarted = {
-                    navController.navigate(Screen.Login.route)
+                    Log.d(TAG, "GetStarted clicked, navigating to ${Screen.Login.route}")
+                    navController.navigate(Screen.Login.route) {
+                        popUpTo(Screen.Landing.route) { inclusive = true }
+                    }
                 }
             )
         }
@@ -44,6 +50,7 @@ fun MalluCupidNavGraph(
             LoginScreen(
                 viewModel = viewModel,
                 onLoginSuccess = { role ->
+                    Log.d(TAG, "Login success, role=$role")
                     if (role == "creator") {
                         navController.navigate(Screen.CreatorDashboard.route) {
                             popUpTo(Screen.Login.route) { inclusive = true }
@@ -65,6 +72,7 @@ fun MalluCupidNavGraph(
             SignupScreen(
                 viewModel = viewModel,
                 onSignupSuccess = { email ->
+                    Log.d(TAG, "Signup success for $email")
                     navController.navigate(Screen.OTP.createRoute(email))
                 },
                 onNavigateToLogin = {
