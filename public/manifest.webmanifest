@@ -1,0 +1,24 @@
+{
+  "name": "MalluCupid",
+  "short_name": "MalluCupid",
+  "description": "Follow creators, chat, and unlock exclusive content.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#f43f5e",
+  "icons": [
+    {
+      "src": "https://res.cloudinary.com/dsamz0zji/image/upload/v1784680970/appicon_n1we3u.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://res.cloudinary.com/dsamz0zji/image/upload/v1784680970/appicon_n1we3u.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
