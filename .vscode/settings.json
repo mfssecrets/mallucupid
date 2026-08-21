@@ -1,3 +1,5 @@
 {
-    "chat.byokUtilityModelDefault": "copilot"
+    "chat.byokUtilityModelDefault": "copilot",
+    "CodeGPT.apiKey": "CodeGPT Plus Beta",
+    "git.ignoreLimitWarning": true
 }
