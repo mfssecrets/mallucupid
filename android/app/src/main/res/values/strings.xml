@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">MalluCupid</string>
+    <string name="title_activity_main">MalluCupid</string>
+    <string name="package_name">com.mallucupid.app</string>
+    <string name="custom_url_scheme">com.mallucupid.app</string>
+    <string name="mc_no_app_to_handle">No app found to handle this request.</string>
+    <string name="mc_offline_title">You\'re offline</string>
+    <string name="mc_offline_retry">Try again</string>
+    <string name="shortcut_home_short">Home</string>
+    <string name="shortcut_home_long">MalluCupid Home</string>
+    <string name="shortcut_wallet_short">Wallet</string>
+    <string name="shortcut_wallet_long">Creator Wallet</string>
+    <string name="shortcut_chat_short">Chat</string>
+    <string name="shortcut_chat_long">Messages &amp; Chat</string>
+</resources>

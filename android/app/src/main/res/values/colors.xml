@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#F43F5E</color>
+    <color name="colorPrimaryDark">#BE123C</color>
+    <color name="colorAccent">#F43F5E</color>
+    <color name="mc_bg_dark">#0B0B0F</color>
+    <color name="mc_bg_dark_top">#1A1A22</color>
+    <color name="mc_surface">#121217</color>
+    <color name="splash_bg">#0B0B0F</color>
+    <color name="splash_bg_light">#FFFFFF</color>
+    <color name="mc_nav_bar_dark">#0B0B0F</color>
+    <color name="mc_nav_bar_light">#FFFFFF</color>
+    <color name="mc_offline_accent">#F43F5E</color>
+    <color name="mc_notification_accent">#F43F5E</color>
+    <color name="mc_biometric_bg">#0B0B0F</color>
+    <color name="mc_biometric_accent">#F43F5E</color>
+</resources>

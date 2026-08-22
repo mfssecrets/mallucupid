@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <exclude domain="file" path="mallucupid-release.keystore" />
+    <exclude domain="file" path="keystore.properties" />
+    <exclude domain="sharedpref" path="mc_rate_prompt.xml" />
+</full-backup-content>

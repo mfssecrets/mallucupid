@@ -12,12 +12,35 @@
     "supabase:link": "supabase link --project-ref rytulzgsuzgicmpvrrxn",
     "supabase:push": "supabase db push",
     "supabase:deploy-functions": "supabase functions deploy auth --no-verify-jwt",
-    "supabase:serve-functions": "supabase functions serve"
+    "supabase:serve-functions": "supabase functions serve",
+    "build:mobile": "vite build --mode mobile",
+    "cap:sync": "npm run build:mobile && cap sync android",
+    "assets:generate": "capacitor-assets generate --android",
+    "android:release": "npm run cap:sync && cd android && ./gradlew bundleRelease assembleRelease"
   },
   "supabase": {
     "projectRef": "rytulzgsuzgicmpvrrxn"
   },
   "dependencies": {
+    "@aparajita/capacitor-biometric-auth": "^10.0.0",
+    "@capacitor-community/in-app-review": "^7.1.0",
+    "@capacitor-community/keep-awake": "^7.1.0",
+    "@capacitor/android": "^7.6.8",
+    "@capacitor/app": "^7.1.2",
+    "@capacitor/browser": "^7.0.5",
+    "@capacitor/clipboard": "^7.0.4",
+    "@capacitor/core": "^7.6.8",
+    "@capacitor/device": "^7.0.5",
+    "@capacitor/filesystem": "^7.1.8",
+    "@capacitor/haptics": "^7.0.5",
+    "@capacitor/keyboard": "^7.0.6",
+    "@capacitor/local-notifications": "^7.0.7",
+    "@capacitor/network": "^7.0.4",
+    "@capacitor/preferences": "^7.0.4",
+    "@capacitor/push-notifications": "^7.0.7",
+    "@capacitor/share": "^7.0.4",
+    "@capacitor/splash-screen": "^7.0.5",
+    "@capacitor/status-bar": "^7.0.6",
     "@supabase/supabase-js": "^2.35.0",
     "@tailwindcss/vite": "^4.1.14",
     "@vitejs/plugin-react": "^5.0.4",
@@ -30,9 +53,14 @@
     "vite": "^6.2.3"
   },
   "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^7.6.8",
     "@types/node": "^22.14.0",
     "autoprefixer": "^10.4.21",
     "tailwindcss": "^4.1.14",
     "typescript": "~5.8.2"
+  },
+  "allowScripts": {
+    "esbuild@0.25.12": true
   }
 }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut android:shortcutId="home" android:enabled="true" android:icon="@mipmap/ic_launcher" android:shortcutShortLabel="@string/shortcut_home_short" android:shortcutLongLabel="@string/shortcut_home_long">
+        <intent android:action="android.intent.action.VIEW" android:targetPackage="com.mallucupid.app" android:targetClass="com.mallucupid.app.MainActivity" android:data="https://www.mallucupid.com/" />
+    </shortcut>
+    <shortcut android:shortcutId="wallet" android:enabled="true" android:icon="@mipmap/ic_launcher" android:shortcutShortLabel="@string/shortcut_wallet_short" android:shortcutLongLabel="@string/shortcut_wallet_long">
+        <intent android:action="android.intent.action.VIEW" android:targetPackage="com.mallucupid.app" android:targetClass="com.mallucupid.app.MainActivity" android:data="https://www.mallucupid.com/wallet" />
+    </shortcut>
+    <shortcut android:shortcutId="chat" android:enabled="true" android:icon="@mipmap/ic_launcher" android:shortcutShortLabel="@string/shortcut_chat_short" android:shortcutLongLabel="@string/shortcut_chat_long">
+        <intent android:action="android.intent.action.VIEW" android:targetPackage="com.mallucupid.app" android:targetClass="com.mallucupid.app.MainActivity" android:data="https://www.mallucupid.com/inbox" />
+    </shortcut>
+</shortcuts>
